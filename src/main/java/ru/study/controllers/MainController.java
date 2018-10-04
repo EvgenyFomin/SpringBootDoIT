@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.study.dao.interfaces.UserDAO;
 import ru.study.model.User;
 import ru.study.validators.UserValidator;
@@ -26,12 +29,12 @@ public class MainController {
         model.addAttribute("name", Objects.requireNonNullElse(name, "stranger"));
         return "index";
     }
-
-    @GetMapping("/raw")
-    @ResponseBody
-    public String raw() {
-        return "SomeData";
-    }
+//
+//    @GetMapping("/raw")
+//    @ResponseBody
+//    public String raw() {
+//        return "SomeData";
+//    }
 
     @GetMapping("/users")
     public String getUsers(Model model) {
