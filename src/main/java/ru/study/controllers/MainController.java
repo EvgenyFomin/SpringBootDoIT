@@ -1,13 +1,12 @@
 package ru.study.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.study.dao.interfaces.UserDAO;
 import ru.study.model.User;
+import ru.study.services.UserService;
 import ru.study.validators.UserValidator;
 
 import javax.validation.Valid;
@@ -17,8 +16,7 @@ import java.util.Objects;
 public class MainController {
 
     @Autowired
-    @Qualifier("jpaUserDAO")
-    private UserDAO userDAO;
+    private UserService userService;
 
     @Autowired
     private UserValidator userValidator;
@@ -37,7 +35,7 @@ public class MainController {
 
     @GetMapping("/users")
     public String getUsers(Model model) {
-        model.addAttribute("users", userDAO.findAll());
+        model.addAttribute("users", userService.findAll());
         return "users";
     }
 
@@ -59,7 +57,7 @@ public class MainController {
             return "signup";
         }
 
-        userDAO.save(user);
+        userService.save(user);
         return "redirect:/users";
     }
 }
