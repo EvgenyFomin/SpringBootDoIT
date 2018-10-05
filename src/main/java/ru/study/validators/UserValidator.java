@@ -11,7 +11,7 @@ import ru.study.model.User;
 @Component
 public class UserValidator implements Validator {
     @Autowired
-    @Qualifier("hibernateUserDAO")
+    @Qualifier("jpaUserDAO")
     private UserDAO userDAO;
 
     @Override
