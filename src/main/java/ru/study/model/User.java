@@ -1,10 +1,17 @@
 package ru.study.model;
 
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+@Entity
+@Table(name = "users")
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotBlank(message = "Name is required")
     private String name;
@@ -12,7 +19,8 @@ public class User {
     @Size(min = 1, max = 10, message = "Surname must be from 1 to 10")
     private String surname;
 
-    @Email
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email is incorrect")
     private String email;
 
     public User() {
@@ -55,5 +63,13 @@ public class User {
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
