@@ -30,16 +30,16 @@ public class SpringJdbcUserDAO implements UserDAO {
     }
 
     @Override
-    public void save(User user) {
-        jdbcTemplate.update("insert into users values(?, ?, ?)",
-                user.getName(), user.getSurname(), user.getEmail());
-    }
-
-    @Override
     public User findUserByEmail(String email) {
         return jdbcTemplate.query("select * from users where email = ?",
                 new Object[]{email},
                 new BeanPropertyRowMapper<>(User.class)
         ).stream().findAny().orElse(null);
+    }
+
+    @Override
+    public void save(User user) {
+        jdbcTemplate.update("insert into users values(?, ?, ?)",
+                user.getName(), user.getSurname(), user.getEmail());
     }
 }

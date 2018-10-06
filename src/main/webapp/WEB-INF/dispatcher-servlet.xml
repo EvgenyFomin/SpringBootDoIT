@@ -8,6 +8,7 @@
     <mvc:annotation-driven/>
     <context:component-scan base-package="ru.study"/>
     <import resource="persistence-config.xml"/>
+    <import resource="aop-config.xml"/>
 
     <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="templateLoaderPath" value="/WEB-INF/templates"/>
