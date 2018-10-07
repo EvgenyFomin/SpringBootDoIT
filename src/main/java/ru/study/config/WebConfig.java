@@ -1,9 +1,6 @@
 package ru.study.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
@@ -13,8 +10,9 @@ import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
+@EnableAspectJAutoProxy
 @ComponentScan("ru.study")
-@ImportResource({"WEB-INF/persistence-config.xml", "WEB-INF/aop-config.xml"})
+@ImportResource({"WEB-INF/persistence-config.xml"})
 public class WebConfig implements WebMvcConfigurer {
 
     @Bean
